@@ -56,12 +56,14 @@
           }
       },
       pagination: false,
-
-      effect: 'coverflow', //"slide", "fade", "cube", "coverflow" or "flip"
+      //페이지 모션
+      effect: 'slide', //"slide", "fade", "cube", "coverflow" or "flip"
 
     });
 
-
+    /*
+     * 페이지 로딩
+     */
     function loadPage() {
 
       console.log('Current slide index is ['+swiper.activeIndex+']')
@@ -83,15 +85,22 @@
 
     }
 
+    //기본슬랏 게임 로딩
     $(document).ready(() => {
       loadPage();
     });
 
+    /*
+     * 기본슬랏 게임 버튼
+     */
     $('.normal_slot_btn').on('click', ()=> {
 
         swiper.slideTo(0);
     })
 
+    /*
+     * 프리스핀 게임 버튼
+     */
     $('.free_slot_btn').on('click', ()=> {
 
         swiper.slideTo(1);
