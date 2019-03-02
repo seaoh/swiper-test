@@ -51,9 +51,17 @@
         // },
       },
       on: {
-          slideChangeTransitionEnd: function() {
+          slideChangeTransitionEnd: () => {
             console.log('slideChangeTransitionEnd ');
-            loadPage();
+
+            $('.swiper-slide').each((item, idx)=> {
+
+                if( idx != swiper.activeIndex ) {
+                    $('.swiper-slide').eq(idx).empty();
+                    console.log('Remove slide ['+idx+']');
+                }
+
+            })
           }
       },
       pagination: false,
@@ -65,30 +73,41 @@
     /*
      * 페이지 로딩
      */
-    function loadPage() {
+    function loadPage(activeIndex) {
 
-      console.log('Current slide index is ['+swiper.activeIndex+']')
-      var targetUrl = $('.swiper-slide').eq(swiper.activeIndex).attr('page');
-      var container = $('.swiper-slide').eq(swiper.activeIndex);
 
-      // targetUrl = 'https://seaoh.github.io/swiper-test/' + targetUrl;
 
-      //기존 slider contents 삭제 (요기서 메모리 삭제??)
-      $('.swiper-slide').empty();
-      
-      console.log('targetUrl=', targetUrl);
 
-      $(container).load(targetUrl, (response, status, xhr)=> {
-        // console.log('response ', response);
-        console.log('status ', status);
-        console.log('xhr ', xhr);
-      })
+        return new Promise((resolve, reject) => {
+
+            if( swiper.activeIndex != activeIndex ) {
+              console.log('Current slide index is ['+activeIndex+']')
+              var targetUrl = $('.swiper-slide').eq(activeIndex).attr('page');
+              var container = $('.swiper-slide').eq(activeIndex);
+
+              // targetUrl = 'https://seaoh.github.io/swiper-test/' + targetUrl;
+
+              console.log('targetUrl=', targetUrl);
+
+              $(container).load(targetUrl, (response, status, xhr)=> {
+                  // console.log('response ', response);
+                  console.log('status ', status);
+                  console.log('xhr ', xhr);
+
+                  resolve();
+              })
+            } else {
+                console.log('Same slide invoked.. Do nothing...');
+            }
+
+        })
+
 
     }
 
     //기본슬랏 게임 로딩
     $(document).ready(() => {
-      loadPage();
+      loadPage(0)
     });
 
     /*
@@ -96,7 +115,10 @@
      */
     $('.normal_slot_btn').on('click', ()=> {
 
-        swiper.slideTo(0);
+        loadPage(0).then(() => {
+            swiper.slideTo(0);
+        });
+
     })
 
     /*
@@ -104,7 +126,9 @@
      */
     $('.free_slot_btn').on('click', ()=> {
 
-        swiper.slideTo(1);
+        loadPage(1).then(() => {
+            swiper.slideTo(1);
+        })
     })
 
   </script>
