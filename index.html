@@ -65,7 +65,7 @@
       
       console.log('swiper targetUrl=', targetUrl);
 
-      $(container).load(targetUrl, {}, (response, status, xhr)=> {
+      $(container).load(targetUrl, (response, status, xhr)=> {
         console.log('Result html ', response);
       })
 
