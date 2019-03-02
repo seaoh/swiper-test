@@ -52,9 +52,11 @@
       },
       on: {
           slideChangeTransitionEnd: () => {
+
+              //페이지 이동 모션이 완료 되었을 경우 이전 slot 컨텐츠 삭제 로직
             console.log('slideChangeTransitionEnd Remove Previous slide contents!!!');
 
-            $('.swiper-slide').each((item, idx)=> {
+            $('.swiper-slide').each((idx, item)=> {
 
                 if( idx != swiper.activeIndex ) {
                     $('.swiper-slide').eq(idx).empty();
