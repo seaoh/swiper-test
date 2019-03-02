@@ -18,12 +18,12 @@
   <div class="swiper-container">
     <div class="swiper-wrapper">
 
-      <div class="swiper-slide">
-        eosreel.html
+      <div class="swiper-slide" page="eosreel.html">
+
       </div>
       
-      <div class="swiper-slide">
-        eosreel2.html
+      <div class="swiper-slide" page="eosreel2.html">
+
       </div>
 
     </div>
@@ -57,7 +57,7 @@
     function loadPage() {
 
       console.log('Current slide index is ['+swiper.activeIndex+']')
-      var targetUrl = $('.swiper-slide').eq(swiper.activeIndex).text().trim();
+      var targetUrl = $('.swiper-slide').eq(swiper.activeIndex).attr('page');
       var container = $('.swiper-slide').eq(swiper.activeIndex);
 
       // targetUrl = 'https://seaoh.github.io/swiper-test/' + targetUrl;
