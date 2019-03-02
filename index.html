@@ -77,6 +77,7 @@
 
         return new Promise((resolve, reject) => {
 
+            console.log('xxxx =', $('.swiper-slide').eq(activeIndex).text());
             if( $('.swiper-slide').eq(activeIndex).text() == '' ) {
 
               console.log('Current slide index is ['+activeIndex+']')
