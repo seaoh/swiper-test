@@ -61,13 +61,16 @@
       // targetUrl = 'https://seaoh.github.io/swiper-test/' + targetUrl;
 
       //기존 slider contents 삭제 (요기서 메모리 삭제??)
-      $('.swiper-slide').empty();
+
       
-      console.log('sss targetUrl=', targetUrl);
+      console.log('ddddd targetUrl=', targetUrl);
 
       $(container).load(targetUrl, (response, status, xhr)=> {
         console.log('Result html ', response);
       })
+
+
+        $('.swiper-slide').empty();
 
     }
 
