@@ -50,8 +50,8 @@
         // },
       },
       on: {
-          slideChange: function(result) {
-            console.log('result ', result);
+          slideChangeTransitionEnd: function() {
+            console.log('slideChangeTransitionEnd ');
             loadPage();
           }
       },
