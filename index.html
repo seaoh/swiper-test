@@ -52,7 +52,7 @@
       },
       on: {
           slideChangeTransitionEnd: () => {
-            console.log('slideChangeTransitionEnd ');
+            console.log('slideChangeTransitionEnd Remove Previous slide contents!!!');
 
             $('.swiper-slide').each((item, idx)=> {
 
@@ -75,12 +75,10 @@
      */
     function loadPage(activeIndex) {
 
-
-
-
         return new Promise((resolve, reject) => {
 
-            if( swiper.activeIndex != activeIndex ) {
+            if( $('.swiper-slide').eq(activeIndex).text() == '' ) {
+
               console.log('Current slide index is ['+activeIndex+']')
               var targetUrl = $('.swiper-slide').eq(activeIndex).attr('page');
               var container = $('.swiper-slide').eq(activeIndex);
@@ -97,8 +95,8 @@
                   resolve();
               })
             } else {
+
                 console.log('Same slide invoked.. Do nothing...');
-                reject();
             }
 
         })
@@ -108,7 +106,7 @@
 
     //기본슬랏 게임 로딩
     $(document).ready(() => {
-      loadPage(0)
+      loadPage(0); //Loading at the first time (-1)
     });
 
     /*
