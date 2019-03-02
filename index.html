@@ -48,9 +48,11 @@
       on: {
           slideChange: function(result) {
             console.log('result ', result);
+            loadPage();
           }
       }
     });
+
 
     function loadPage() {
 
@@ -66,7 +68,7 @@
       console.log('targetUrl=', targetUrl);
 
       $(container).load(targetUrl, (response, status, xhr)=> {
-        console.log('load complete ', response);
+        console.log('response ', response);
         console.log('status ', response);
         console.log('xhr ', xhr);
       })
