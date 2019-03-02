@@ -66,7 +66,7 @@
       //기존 slider contents 삭제 (요기서 메모리 삭제??)
       $('.swiper-slide').empty();
       
-      console.log('targetUrl2=', targetUrl);
+      console.log('targetUrl=', targetUrl);
 
       $(container).load(targetUrl, (response, status, xhr)=> {
         // console.log('response ', response);
@@ -80,7 +80,20 @@
       loadPage();
     });
 
+    $('.normal_slot_btn').on('click', ()=> {
+
+        swiper.slideTo(0);
+    })
+
+    $('.free_slot_btn').on('click', ()=> {
+
+        swiper.slideTo(1);
+    })
 
   </script>
+
+  <button style="position:absolute; top: 10px; left: 20px;" class="normal_slot_btn" >일반슬롯</button>
+
+  <button style="position:absolute; top: 30px; left: 20px;" class="free_slot_btn">프리스핀</button>
 </body>
 </html>
